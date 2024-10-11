@@ -1,3 +1,15 @@
-#!/bin/sh
+#!/bin/bash
 
-git config --global user.email bsdfan@users.noreply.github.com
+TMPDIR=$(mktemp -d)
+
+CURRENT=$PWD
+
+cd $TMPDIR
+
+for script in ~/.dotfiles/scripts/*; do
+  bash "$script"
+done
+
+cd $CURRENT
+
+rm -rf $TMPDIR
